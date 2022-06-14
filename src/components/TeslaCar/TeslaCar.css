@@ -1,0 +1,12 @@
+.tesla-car {
+	width: 100%;
+	background: #fff url('../../assets/tesla.jpg');
+	background-size: contain;
+}
+
+.tesla-wheels {
+	height: 247px;
+	width: 555px;
+	position: relative;
+	margin: 0 auto;
+}
