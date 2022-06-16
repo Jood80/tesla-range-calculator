@@ -6,6 +6,7 @@ import TeslaStats from '../components/TeslaStats'
 import {getModelData} from '../services/Battery.service'
 import {calculateNewValue} from '@testing-library/user-event/dist/utils'
 import TeslaCounter from '../components/TeslaCounter'
+import TeslaClimate from '../components/TeslaClimate'
 
 const TeslaBattery=({counterDefaultVal}) => {
 	const [carstats, setCarstats]=useState([])
@@ -85,6 +86,12 @@ const TeslaBattery=({counterDefaultVal}) => {
 		}
 	}
 
+	const handleChangeClimate=()=> {
+		const config={...carConfig}
+		config['climate']=!config.climate
+		setCarConfig(config)
+	}
+
 	return (
 		<form className="tesla-battery">
 			<h1>Range per change</h1>
@@ -104,7 +111,11 @@ const TeslaBattery=({counterDefaultVal}) => {
 					increment={increment}
 					decrement={decrement}
 				/>
-				</div>
+				<TeslaClimate
+					value={carConfig.climate}
+					limit={carConfig.temperature>10}
+					handleChangeClimate={handleChangeClimate} />
+					</div>
 			</div>
 			<TeslaNotice />
 
