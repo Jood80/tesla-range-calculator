@@ -23,7 +23,7 @@ const counterDefaultVal={
 
 const App=() => {
   return (
-    <div className="wrapper">
+    <div className="App">
       <Header />
       <TeslaBattery counterDefaultVal={counterDefaultVal} />
     </div>
