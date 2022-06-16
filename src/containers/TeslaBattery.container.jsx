@@ -7,6 +7,7 @@ import {getModelData} from '../services/Battery.service'
 import {calculateNewValue} from '@testing-library/user-event/dist/utils'
 import TeslaCounter from '../components/TeslaCounter'
 import TeslaClimate from '../components/TeslaClimate'
+import TeslaWheels from '../components/TeslaWheels'
 
 const TeslaBattery=({counterDefaultVal}) => {
 	const [carstats, setCarstats]=useState([])
@@ -32,11 +33,11 @@ const TeslaBattery=({counterDefaultVal}) => {
 
 	const updateStats=() => {
 		const carModels=['60', '60D', '75', '75D', '90D', 'P100D']
-		setCarstats(calculateStats(carModels, carConfig ))
-	}	
-	
-	useEffect(() => {		
-		updateStats()	
+		setCarstats(calculateStats(carModels, carConfig))
+	}
+
+	useEffect(() => {
+		updateStats()
 	}, [])
 
 	const updateCounterState=(title, newValue) => {
@@ -44,21 +45,20 @@ const TeslaBattery=({counterDefaultVal}) => {
 		title==='Speed'? config['speed']=newValue:config['temperature']=newValue
 		setCarConfig(config)
 		updateStats()
-
-}	
+	}
 
 	const increment=(e, title) => {
 		e.preventDefault();
 		let currentValue, maxValue, step;
 		const {speed, temperature}=counterDefaultVal;
-		if(title === 'Speed') {
+		if(title==='Speed') {
 			currentValue=carConfig.speed
 			maxValue=speed.max;
 			step=speed.step;
 		} else {
 			currentValue=carConfig.temperature;
 			maxValue=temperature.max;
-			step= temperature.step
+			step=temperature.step
 		}
 
 		if(currentValue<maxValue) {
@@ -70,26 +70,34 @@ const TeslaBattery=({counterDefaultVal}) => {
 	const decrement=(e, title) => {
 		e.preventDefault();
 		let currentValue, minValue, step;
-		const { speed, temperature } = counterDefaultVal;
-		if (title === 'Speed') {
-			currentValue = carConfig.speed;
-			minValue = speed.min;
-			step = speed.step;
+		const {speed, temperature}=counterDefaultVal;
+		if(title==='Speed') {
+			currentValue=carConfig.speed;
+			minValue=speed.min;
+			step=speed.step;
 		} else {
-			currentValue = carConfig.temperature;
-			minValue = temperature.min;
-			step = temperature.step;
+			currentValue=carConfig.temperature;
+			minValue=temperature.min;
+			step=temperature.step;
 		}
-		if (currentValue > minValue) {
-			const newValue = currentValue - step;
+		if(currentValue>minValue) {
+			const newValue=currentValue-step;
 			updateCounterState(title, newValue);
 		}
 	}
 
-	const handleChangeClimate=()=> {
+	const handleChangeClimate=() => {
 		const config={...carConfig}
 		config['climate']=!config.climate
 		setCarConfig(config)
+		updateStats()
+	}
+
+	const handleChangeWheels=(size) => {
+		const config={...carConfig}
+		config['wheels']=size
+		setCarConfig(config)
+		updateStats()
 	}
 
 	return (
@@ -98,24 +106,28 @@ const TeslaBattery=({counterDefaultVal}) => {
 			<TeslaCar wheelsize={carConfig.wheels} />
 			<TeslaStats carstats={carstats} />
 			<div className="tesla-controls cf">
-				 <TeslaCounter
+				<TeslaCounter
 					currentValue={carConfig.speed}
 					initValues={counterDefaultVal.speed}
 					increment={increment}
 					decrement={decrement}
 				/>
 				<div className="tesla-climate-container cf">
-				<TeslaCounter
-					currentValue={carConfig.temperature}
-					initValues={counterDefaultVal.temperature}
-					increment={increment}
-					decrement={decrement}
+					<TeslaCounter
+						currentValue={carConfig.temperature}
+						initValues={counterDefaultVal.temperature}
+						increment={increment}
+						decrement={decrement}
+					/>
+					<TeslaClimate
+						value={carConfig.climate}
+						limit={carConfig.temperature>10}
+						handleChangeClimate={handleChangeClimate} />
+				</div>
+				<TeslaWheels
+					value={carConfig.wheels}
+					handleChangeWheels={handleChangeWheels}
 				/>
-				<TeslaClimate
-					value={carConfig.climate}
-					limit={carConfig.temperature>10}
-					handleChangeClimate={handleChangeClimate} />
-					</div>
 			</div>
 			<TeslaNotice />
 
