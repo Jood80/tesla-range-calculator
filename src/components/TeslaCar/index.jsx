@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './TeslaCar.css';
+import './style.css';
 
 const TeslaCar = (props) => (
   <div className="tesla-car">

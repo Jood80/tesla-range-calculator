@@ -1,5 +1,5 @@
 import logoUrl from '../../assets/logo.svg'
-import './Header.css'
+import './style.css'
 
 const Header=() => (
 	<div className="header">

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './TeslaCounter.css'
+import './style.css'
 
 const TeslaCounter=({currentValue,initValues,increment, decrement}) => (
 <div className="tesla-counter">

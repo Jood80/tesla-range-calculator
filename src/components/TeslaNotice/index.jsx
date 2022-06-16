@@ -1,4 +1,4 @@
-import './TeslaNotice.css'
+import './style.css'
 
 
 const TeslaNotice=() => (

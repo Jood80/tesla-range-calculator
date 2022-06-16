@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import './TeslaStats.css';
+import './style.css';
 
 
 const TeslaStats=({carstats}) => {
-	console.log(carstats);
 	const listItems=carstats.map(stat => (
 		<li key={stat.model}>
 			<div className={`tesla-stats-icon tesla-stats-icon--${stat.model.toLowerCase()}`}></div>
