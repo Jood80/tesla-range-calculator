@@ -1,6 +1,7 @@
 .tesla-car {
 	width: 100%;
-	background: #fff url('../../assets/tesla.jpg');
+	background: #fff url('../../assets/tesla.jpg') no-repeat top center;
+	min-height: 350px;
 	background-size: contain;
 }
 
