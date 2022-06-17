@@ -13,7 +13,7 @@ import Header from "./components/Header";
 import TeslaNotice from './components/TeslaNotice'
 
 
-const store=createStore(appReducer)
+const store=createStore(appReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) //TODO: createStore is deperecated, CHANGE IT!
 
 
 const App=() => {
