@@ -20,7 +20,7 @@ export const speedDown=(value) => {
 
 export const temperatureUp=(value) => {
 	return {
-		type: 'TEMERATURE_UP',
+		type: 'TEMPERATURE_UP',
 		value,
 		step: counterDefaultValue.temperature.step,
 		maxValue: counterDefaultValue.temperature.max
@@ -29,10 +29,10 @@ export const temperatureUp=(value) => {
 
 export const temperatureDown=(value) => {
 	return {
-		type: 'TEMERATURE_DOWN',
+		type: 'TEMPERATURE_DOWN',
 		value,
 		step: counterDefaultValue.temperature.step,
-		maxValue: counterDefaultValue.temperature.min
+		minValue: counterDefaultValue.temperature.min
 	}
 }
 

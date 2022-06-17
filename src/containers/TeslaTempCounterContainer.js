@@ -5,7 +5,7 @@ import TeslaCounter from '../components/TeslaCounter';
 
 const mapStateToProps=(state) => {
 	return {
-		currrentValue: state.config.temperature,
+		currentValue: state.config.temperature,
 		initValues: counterDefaultValue.temperature
 	}
 }
