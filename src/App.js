@@ -1,32 +1,44 @@
-import Header from "./components/Header";
+import {Provider} from "react-redux";
+import {createStore} from 'redux';
 import './App.css'
-import TeslaBattery from "./containers/TeslaBattery.container";
+import appReducer from './reducers/teslaRangeApp'
+import {
+  TeslaCarContainer,
+  TeslaStatsContainer,
+  TeslaSpeedCounterContainer, TeslaTempCounterContainer,
+  TeslaClimateContainer,
+  TeslaWheelsContainer
+} from "./containers";
+import Header from "./components/Header";
+import TeslaNotice from './components/TeslaNotice'
 
 
-const counterDefaultVal={
-  speed: {
-    title: "Speed",
-    unit: "mph",
-    step: 5,
-    min: 45,
-    max: 70
-  },
-  temperature: {
-    title: "Outside Temperature",
-    unit: "°",
-    step: 10,
-    min: -10,
-    max: 40
-  }
-};
+const store=createStore(appReducer)
 
 
 const App=() => {
   return (
-    <div className="App">
-      <Header />
-      <TeslaBattery counterDefaultVal={counterDefaultVal} />
-    </div>
+    <Provider store={store}>
+      <div>
+        <Header />
+        <div>
+          <form>
+            <h1 >Range Per Charge</h1>
+            <TeslaCarContainer />
+            <TeslaStatsContainer />
+            <div>
+              <TeslaSpeedCounterContainer />
+              <div>
+                <TeslaTempCounterContainer />
+                <TeslaClimateContainer />
+              </div>
+              <TeslaWheelsContainer />
+            </div>
+            <TeslaNotice />
+          </form>
+        </div>
+      </div>
+    </Provider>
   );
 }
 
