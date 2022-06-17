@@ -21,14 +21,14 @@ const App=() => {
     <Provider store={store}>
       <div>
         <Header />
-        <div>
-          <form>
+        <div className="wrapper">
+          <form className="tesla-battery" >
             <h1 >Range Per Charge</h1>
             <TeslaCarContainer />
             <TeslaStatsContainer />
-            <div>
+            <div className="tesla-controls cf">
               <TeslaSpeedCounterContainer />
-              <div>
+              <div className="tesla-climate-container cf" >
                 <TeslaTempCounterContainer />
                 <TeslaClimateContainer />
               </div>

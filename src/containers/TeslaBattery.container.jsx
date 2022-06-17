@@ -4,12 +4,29 @@ import TeslaCar from '../components/TeslaCar'
 import {useEffect, useState} from 'react'
 import TeslaStats from '../components/TeslaStats'
 import {getModelData} from '../services/Battery.service'
-import {calculateNewValue} from '@testing-library/user-event/dist/utils'
 import TeslaCounter from '../components/TeslaCounter'
 import TeslaClimate from '../components/TeslaClimate'
 import TeslaWheels from '../components/TeslaWheels'
 
-const TeslaBattery=({counterDefaultVal}) => {
+
+const counterDefaultVal={
+  speed: {
+    title: "Speed",
+    unit: "mph",
+    step: 5,
+    min: 45,
+    max: 70
+  },
+  temperature: {
+    title: "Outside Temperature",
+    unit: "°",
+    step: 10,
+    min: -10,
+    max: 40
+  }
+};
+
+const TeslaBattery=() => {
 	const [carstats, setCarstats]=useState([])
 	const [carConfig, setCarConfig]=useState({
 		speed: 55,
@@ -101,18 +118,18 @@ const TeslaBattery=({counterDefaultVal}) => {
 	}
 
 	return (
-		<form className="tesla-battery">
+		<form>
 			<h1>Range per change</h1>
 			<TeslaCar wheelsize={carConfig.wheels} />
 			<TeslaStats carstats={carstats} />
-			<div className="tesla-controls cf">
+			<div>
 				<TeslaCounter
 					currentValue={carConfig.speed}
 					initValues={counterDefaultVal.speed}
 					increment={increment}
 					decrement={decrement}
 				/>
-				<div className="tesla-climate-container cf">
+				<div>
 					<TeslaCounter
 						currentValue={carConfig.temperature}
 						initValues={counterDefaultVal.temperature}
