@@ -6,7 +6,7 @@ import TeslaCounter from '../components/TeslaCounter';
 const mapStateToProps=(state) => {
 
 	return {
-		currrentValue: state?.config.speed,
+		currentValue: state.config.speed,
 		initValues: counterDefaultValue.speed
 	}
 }
