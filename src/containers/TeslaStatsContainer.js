@@ -1,15 +1,13 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import TeslaStats from '../components/TeslaStats';
 
-const mapStateToProps=(state) => {
-	return {
-		carstats: state.carstats
-	}
-}
+const mapStateToProps = (state) => {
+  return {
+    carstats: state.carstats
+  };
+};
 
+const TeslaStatsCounterContainer = connect(mapStateToProps, null)(TeslaStats);
 
-const TeslaStatsCounterContainer=connect(mapStateToProps, null)(TeslaStats)
-
-
-export default TeslaStatsCounterContainer
+export default TeslaStatsCounterContainer;
