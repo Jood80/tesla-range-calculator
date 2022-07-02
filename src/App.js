@@ -1,7 +1,5 @@
 import {Provider} from "react-redux";
-import {createStore} from 'redux';
 import './App.css'
-import appReducer from './reducers/teslaRangeApp'
 import {
   TeslaCarContainer,
   TeslaStatsContainer,
@@ -11,9 +9,8 @@ import {
 } from "./containers";
 import Header from "./components/Header";
 import TeslaNotice from './components/TeslaNotice'
+import { store } from "./containers/store";
 
-
-const store=createStore(appReducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) //TODO: createStore is deperecated, CHANGE IT!
 
 
 const App=() => {
